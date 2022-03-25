@@ -1,5 +1,8 @@
 package com.bosonit.SpringDemo.modelo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Persona {
     String nombre;
     String poblacion;
@@ -33,5 +36,13 @@ public class Persona {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    /**
+     * FUNCION QUE RETORNA EL OBJETO PERSONA
+     * @return persona en objeto
+     */
+    public Persona getPersona(){
+        return new Persona(this.getNombre(),this.getPoblacion(),this.getEdad());
     }
 }
