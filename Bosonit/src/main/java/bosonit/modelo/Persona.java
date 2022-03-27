@@ -1,5 +1,8 @@
 package com.bosonit.modelo;
 
+import lombok.Data;
+
+@Data
 public class Persona {
 
     private String nombre;

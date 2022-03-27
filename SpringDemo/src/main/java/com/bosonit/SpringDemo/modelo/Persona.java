@@ -14,6 +14,10 @@ public class Persona {
         this.edad = edad;
     }
 
+    public Persona getPersona(){
+        return new Persona(this.getNombre(),this.getPoblacion(),this.getEdad());
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -36,13 +40,5 @@ public class Persona {
 
     public void setEdad(int edad) {
         this.edad = edad;
-    }
-
-    /**
-     * FUNCION QUE RETORNA EL OBJETO PERSONA
-     * @return persona en objeto
-     */
-    public Persona getPersona(){
-        return new Persona(this.getNombre(),this.getPoblacion(),this.getEdad());
     }
 }
