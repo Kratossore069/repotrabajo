@@ -25,6 +25,11 @@ public class PersonaServicio implements Interfaz {
         return new Persona(persona.getId(), persona.getNombre(), persona.getEdad(),persona.getPoblacion());
     }
 
+    /**
+     * METODO PARA CAMBIAR EL NOMBRE DE UN USUARIO
+     * A PARTIR DE UN ID
+     * @param id
+     */
     @Override
     public void putPersona(int id) {
         for(Persona personas: listaPersonas) {
@@ -34,18 +39,53 @@ public class PersonaServicio implements Interfaz {
         }
     }
 
+    /**
+     * METODO QUE ELIMINA DE LA LISTA UNA PERSONA
+     * A PARTIR DE SU NUMERO DE ID
+     * @param id
+     */
     @Override
     public void deletePersona(int id) {
-
+        for(Persona personas: listaPersonas) {
+            if(personas.getId() == (id)) {
+                listaPersonas.remove(this);
+            }
+        }
     }
 
+    /**
+     * FUNCION QUE RETORNA UNA PERSONA SI EXISTE
+     * EL NOMBRE QUE PERTENECE
+     * @param persona
+     * @return persona retornada
+     */
     @Override
     public Persona getPersonaNombre(Persona persona) {
-        return null;
+        Persona encontrada = null;
+        for(Persona personas: listaPersonas) {
+            if(personas.getNombre() == (persona.getNombre())) {
+                encontrada = new Persona(persona.getId(),persona.getNombre(),persona.getEdad(),
+                        persona.getPoblacion());
+            }
+        }
+        return encontrada;
     }
 
+    /**
+     * FUNCION QUE RETORNA UNA PERSONA
+     * SI SE LA ENCUENTRA POR SU ID
+     * @param persona
+     * @return persona encontrada
+     */
     @Override
     public Persona getPersonaID(Persona persona) {
-        return null;
+        Persona encontrada = null;
+        for(Persona personas: listaPersonas) {
+            if(personas.getId() == (persona.getId())) {
+                encontrada = new Persona(persona.getId(),persona.getNombre(),persona.getEdad(),
+                        persona.getPoblacion());
+            }
+        }
+        return encontrada;
     }
 }
