@@ -1,10 +1,13 @@
 package com.bosonit.CRUDrelaciones.modelo;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name="estudiante")
 public class Student {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     String id_student;
 
     String id_persona;

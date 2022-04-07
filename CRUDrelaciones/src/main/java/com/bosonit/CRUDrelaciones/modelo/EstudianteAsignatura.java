@@ -1,12 +1,16 @@
 package com.bosonit.CRUDrelaciones.modelo;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
+@Entity
+@Table(name="estudiante_asignatura")
 public class EstudianteAsignatura {
 
     @Id
-    String id_asignatura
+    String id_asignatura;
 
     String id_student;
     String asignatura;
@@ -14,7 +18,7 @@ public class EstudianteAsignatura {
     Date initial_date;
     Date finish_date;
 
-    public EstudianteAsignatura(String id_asignatura, String id_student, String asignatura, String coments, Date initial_date, Date finish_date) {
+    public EstudianteAsignatura(String id_asignatura, String id_student,String asignatura, String coments, Date initial_date, Date finish_date) {
         this.id_asignatura = id_asignatura;
         this.id_student = id_student;
         this.asignatura = asignatura;
