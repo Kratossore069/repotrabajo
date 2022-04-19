@@ -6,4 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InterfazPersona extends CrudRepository<Persona,Integer> {
-}
+}// Esto es un repositorio
