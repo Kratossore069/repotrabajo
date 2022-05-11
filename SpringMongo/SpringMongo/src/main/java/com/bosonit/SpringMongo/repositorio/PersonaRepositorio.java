@@ -4,6 +4,8 @@ import com.bosonit.SpringMongo.modelo.Persona;
 import com.mongodb.BasicDBObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -34,5 +36,10 @@ public class PersonaRepositorio {
      */
     public long delete(Persona persona) {
         return mongoTemplate.remove(persona).getDeletedCount();
+    }
+
+    public List<Persona> getByName(String nombre) {
+        Query consulta = new Query(Criteria.where("nombre").gte(nombre));
+        return mongoTemplate.find(consulta,Persona.class);
     }
 }

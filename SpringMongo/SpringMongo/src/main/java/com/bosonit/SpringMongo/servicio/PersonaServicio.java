@@ -29,4 +29,8 @@ public class PersonaServicio {
     public long delete(Persona persona) {
         return personaRepositorio.delete(persona);
     }
+
+    public List<Persona> getByName(String nombre) {
+        return personaRepositorio.getByName(nombre);
+    }
 }
