@@ -13,7 +13,8 @@ public class Persona {
     private String apellido;
     private String domicilio;
 
-    public Persona(){}
+    public Persona() {
+    }
 
     public Persona(int id, String nombre, String apellido, String domicilio) {
         this.id = id;
