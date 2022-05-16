@@ -3,7 +3,6 @@ package com.bosonit.SpringMongo.controlador;
 import com.bosonit.SpringMongo.modelo.Persona;
 import com.bosonit.SpringMongo.servicio.PersonaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -15,8 +14,6 @@ public class PersonaController {
 
     @Autowired
     PersonaServicio personaServicio;
-
-    private MongoTemplate mongotemplate;
 
     @PostMapping("/")
     public Persona guardarPersona(@RequestBody Persona persona){
