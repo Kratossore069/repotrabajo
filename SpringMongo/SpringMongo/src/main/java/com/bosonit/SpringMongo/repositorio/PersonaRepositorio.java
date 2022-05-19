@@ -27,6 +27,7 @@ public class PersonaRepositorio {
 
     public List<Persona> find() {
         return mongoTemplate.findAll(Persona.class);
+        //Recordar hacer paginación de los elementos
     }
 
     /**
@@ -39,7 +40,7 @@ public class PersonaRepositorio {
     }
 
     public List<Persona> getByName(String nombre) {
-        Query consulta = new Query(Criteria.where("nombre").gte(nombre));
+        Query consulta = new Query(Criteria.where("nombre").regex("^"+nombre));
         return mongoTemplate.find(consulta,Persona.class);
     }
 }
