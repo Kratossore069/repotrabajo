@@ -1,7 +1,6 @@
 package com.bosonit.SpringMongo.repositorio;
 
 import com.bosonit.SpringMongo.modelo.Persona;
-import com.mongodb.BasicDBObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -17,11 +16,6 @@ public class PersonaRepositorio {
     MongoTemplate mongoTemplate;
 
     public Persona guardarPersona(Persona persona) {
-        /*BasicDBObject dbo = new BasicDBObject();
-        dbo.append("nombre",persona.getNombre());
-        dbo.append("apellido",persona.getApellido());
-        dbo.append("domicilio",persona.getDomicilio());*/
-
         return mongoTemplate.save(persona);
     }
 
