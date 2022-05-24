@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import com.bosonit.SpringMongo.servicio.SeguridadServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,15 @@ public class SeguridadController {
 
     @Autowired
     SeguridadServicio seguridadServicio;
+
+    /**
+     * FUNCIÓN QUE RETORNA SI TODO ESTÁ BIEN
+     * @return saludo
+     */
+    @GetMapping
+    public String saludo(){
+        return "Todo funciona";
+    }
 
     @PostMapping("/")
     @Produces(MediaType.APPLICATION_JSON)
