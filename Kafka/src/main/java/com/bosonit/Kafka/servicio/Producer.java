@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Producer {
-    public static final String mensaje = "Mi mensaje";
+    public static final String mensaje = "mytopic";
 
     @Autowired
     private KafkaTemplate<String,String> kafkaTemp;
