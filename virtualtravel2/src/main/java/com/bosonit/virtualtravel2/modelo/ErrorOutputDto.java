@@ -1,14 +1,25 @@
-package com.bosonit.VirtualTravel.modelo;
+package com.bosonit.virtualtravel2.modelo;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-import org.springframework.stereotype.Component;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@Component
+@Entity
 public class ErrorOutputDto {
-
+    @Id
+    @Column(name="idCorreoError")
+    private int idCorreoError;
+    @Column(name="httpCode")
     private int httpCode;
+    @Column(name="msgError")
     private String msgError;
+    @Column(name="tipo")
     private String tipo;
+    @Column(name="fecha")
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date fecha;
 
     public ErrorOutputDto(int httpCode, String msgError, String tipo, Date fecha) {

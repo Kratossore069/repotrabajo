@@ -1,18 +1,29 @@
-package com.bosonit.VirtualTravel.modelo;
+package com.bosonit.virtualtravel2.modelo;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import org.springframework.stereotype.Component;
+@Entity
+public class CorreoOutputDto {
 
-@Component
-public class CorreoInputDto {
-
+    @Id
+    @Column(name="idCorreoOutput")
+    private int idCorreoOutput;
+    @Column(name="ciudadDestino")
     private String ciudadDestino;
+    @Column(name="email")
     private String email;
+    @Column(name="fechaReserva")
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date fechaReserva;
+    @Column(name="horaReserva")
     private float horaReserva;
 
-    public CorreoInputDto(String ciudadDestino, String email, Date fechaReserva, float horaReserva) {
+    public CorreoOutputDto(String ciudadDestino, String email, Date fechaReserva, float horaReserva) {
         this.ciudadDestino = ciudadDestino;
         this.email = email;
         this.fechaReserva = fechaReserva;
