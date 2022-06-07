@@ -1,8 +1,8 @@
 package com.bosonit.virtualtravel2.repositorio;
 
 import com.bosonit.virtualtravel2.modelo.Reserva;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ReservaRepo extends JpaRepository<Reserva, Integer> {}
+public interface ReservaRepo extends MongoRepository<Reserva, Integer> {}

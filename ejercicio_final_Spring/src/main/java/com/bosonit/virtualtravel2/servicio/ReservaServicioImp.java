@@ -5,7 +5,6 @@ import com.bosonit.virtualtravel2.repositorio.ReservaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,7 +19,7 @@ public class ReservaServicioImp implements ReservaServicio {
      * @param fechaReserva
      */
     @Override
-    public void hacerReserva(int diaReserva, Date fechaReserva) {
+    public void hacerReserva(int diaReserva, String fechaReserva) {
         Reserva reserva = new Reserva(diaReserva, fechaReserva);
         reservaRepo.save(reserva);
     }

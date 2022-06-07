@@ -1,22 +1,24 @@
 package com.bosonit.virtualtravel2.controlador;
 
 import com.bosonit.virtualtravel2.modelo.Reserva;
-import com.bosonit.virtualtravel2.servicio.ReservaServicioImp;
+import com.bosonit.virtualtravel2.servicio.ReservaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("reserva")
 public class ReservaController {
 
     @Autowired
-    private ReservaServicioImp servicioReserva;
+    private ReservaServicio servicioReserva;
 
-    @PostMapping("/")
-    public void hacerReserva(int diaReserva, Date fechaReserva) {
+    @PostMapping("reservar")
+    public void hacerReserva(int diaReserva, String fechaReserva) {
         servicioReserva.hacerReserva(diaReserva, fechaReserva);
     }
 
@@ -25,7 +27,7 @@ public class ReservaController {
         return servicioReserva.listaReservas();
     }
 
-    @GetMapping("/")
+    @GetMapping("buscar")
     public Reserva obtenerReserva(@RequestParam("diaReserva") int diaReserva) {
         return servicioReserva.obtenerReserva(diaReserva);
     }
