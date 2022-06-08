@@ -10,5 +10,4 @@ public class Virtualtravel2Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Virtualtravel2Application.class, args);
 	}
-
 }

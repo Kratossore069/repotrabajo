@@ -1,7 +1,7 @@
 package com.bosonit.virtualtravel2;
 
 import com.bosonit.virtualtravel2.modelo.Usuario;
-import com.bosonit.virtualtravel2.repositorio.UsuarioRepo;
+import com.bosonit.virtualtravel2.repositorio.UserRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 class Virtualtravel2ApplicationTests {
 
     @Autowired
-    private UsuarioRepo usuarioRepo;
+    private UserRepo usuarioRepo;
 
     /**
      * TEST QUE SE ASEGURA DE QUE EXISTE
