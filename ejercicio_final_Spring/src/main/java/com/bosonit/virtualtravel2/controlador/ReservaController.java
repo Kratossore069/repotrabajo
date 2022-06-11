@@ -51,22 +51,16 @@ public class ReservaController {
         }
     }
 
-    
-    /*
-     * @PutMapping("/tutorials/{id}")
-     * public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") String
-     * id, @RequestBody Tutorial tutorial) {
-     * 
-     * }
-     */
-
-    /*
-     * }
-     * 
-     * @DeleteMapping("/tutorials")
-     * public ResponseEntity<HttpStatus> deleteAllTutorials() {
-     * 
-     * }
-     */
-
+    @GetMapping("/lista/{id}")
+    public List<Reserva> buscarLista(@PathVariable("id") int id) throws MiExcepcion {
+        try {
+            List<Reserva> reservas = reservaRepo.findById(id).stream().toList();
+            if (reservas.isEmpty()) {
+                return null;// new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return reservas;// new ResponseEntity<>(reservas, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new MiExcepcion("Error al buscar la lista de reservas");
+        }
+    }
 }
