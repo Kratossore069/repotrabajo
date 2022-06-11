@@ -3,7 +3,6 @@ package com.bosonit.virtualtravel2.controlador;
 import com.bosonit.virtualtravel2.exceptions.MiExcepcion;
 import com.bosonit.virtualtravel2.modelo.Reserva;
 import com.bosonit.virtualtravel2.repositorio.ReservaRepo;
-import com.bosonit.virtualtravel2.servicio.ReservaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,18 +10,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8090")
 @RestController
-@RequestMapping("/virtualtravel")
+@RequestMapping("/api")
 public class ReservaController {
 
     @Autowired
     ReservaRepo reservaRepo;
 
-    @GetMapping("/listar")
-    public ResponseEntity<List<Reserva>> verReservas() {
+    @GetMapping("/lista")
+    public ResponseEntity<List<Reserva>> listarReservas() {
         try {
-            List<Reserva> reservas = reservaRepo.listarReservas();
+            List<Reserva> reservas = reservaRepo.findAll();
             if (reservas.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -32,28 +30,43 @@ public class ReservaController {
         }
     }
 
+    @PostMapping("/reservar")
+    public ResponseEntity<Reserva> crearReserva(@RequestBody Reserva reserva) {
+        try {
+            Reserva nuevaReserva = reservaRepo
+                    .save(new Reserva(reserva.getDiaReserva(), reserva.getFechaReserva()));
+            return new ResponseEntity<>(nuevaReserva, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<HttpStatus> borrarReserva(@PathVariable("id") int id) {
+        try {
+            reservaRepo.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    
     /*
-     * @Autowired
-     * private ReservaServicio servicioReserva;
+     * @PutMapping("/tutorials/{id}")
+     * public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") String
+     * id, @RequestBody Tutorial tutorial) {
      * 
-     * @PostMapping("reservar")
-     * public void hacerReserva(int diaReserva, String fechaReserva) throws
-     * MiExcepcion {
-     * try{
-     * servicioReserva.hacerReserva(diaReserva, fechaReserva);
-     * }catch(Exception ex){
-     * throw new MiExcepcion(ex.getMessage());
-     * }
-     * }
-     * 
-     * @GetMapping("lista")
-     * public List<Reserva> listaReservas() {
-     * return servicioReserva.listaReservas();
-     * }
-     * 
-     * @GetMapping("buscar")
-     * public Reserva obtenerReserva(@RequestParam("diaReserva") int diaReserva) {
-     * return servicioReserva.obtenerReserva(diaReserva);
      * }
      */
+
+    /*
+     * }
+     * 
+     * @DeleteMapping("/tutorials")
+     * public ResponseEntity<HttpStatus> deleteAllTutorials() {
+     * 
+     * }
+     */
+
 }
