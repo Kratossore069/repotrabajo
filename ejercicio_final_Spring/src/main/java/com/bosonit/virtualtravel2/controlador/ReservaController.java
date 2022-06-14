@@ -56,9 +56,9 @@ public class ReservaController {
         try {
             List<Reserva> reservas = reservaRepo.findById(id).stream().toList();
             if (reservas.isEmpty()) {
-                return null;// new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                return null;
             }
-            return reservas;// new ResponseEntity<>(reservas, HttpStatus.OK);
+            return reservas;
         } catch (Exception e) {
             throw new MiExcepcion("Error al buscar la lista de reservas");
         }
