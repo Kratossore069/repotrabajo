@@ -1,66 +1,27 @@
 package com.bosonit.virtualtravel2.controlador;
 
-import com.bosonit.virtualtravel2.exceptions.MiExcepcion;
-import com.bosonit.virtualtravel2.modelo.Reserva;
-import com.bosonit.virtualtravel2.repositorio.ReservaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import com.bosonit.virtualtravel2.modelo.Reserva;
+import com.bosonit.virtualtravel2.servicio.ReservaServicioImp;
 
-@RestController
-@RequestMapping("/api")
+@Controller
 public class ReservaController {
-
+    
     @Autowired
-    ReservaRepo reservaRepo;
+    ReservaServicioImp reservaServicioImp;
 
-    @GetMapping("/lista")
-    public ResponseEntity<List<Reserva>> listarReservas() {
-        try {
-            List<Reserva> reservas = reservaRepo.findAll();
-            if (reservas.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(reservas, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping("/saludo")
+    public String saludo(){
+        return reservaServicioImp.saludo();
     }
 
     @PostMapping("/reservar")
-    public ResponseEntity<Reserva> crearReserva(@RequestBody Reserva reserva) {
-        try {
-            Reserva nuevaReserva = reservaRepo
-                    .save(new Reserva(reserva.getDiaReserva(), reserva.getFechaReserva()));
-            return new ResponseEntity<>(nuevaReserva, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<HttpStatus> borrarReserva(@PathVariable("id") int id) {
-        try {
-            reservaRepo.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/lista/{id}")
-    public List<Reserva> buscarLista(@PathVariable("id") int id) throws MiExcepcion {
-        try {
-            List<Reserva> reservas = reservaRepo.findById(id).stream().toList();
-            if (reservas.isEmpty()) {
-                return null;
-            }
-            return reservas;
-        } catch (Exception e) {
-            throw new MiExcepcion("Error al buscar la lista de reservas");
-        }
+    public Reserva hacerReserva(@RequestParam int diaReserva, @RequestParam String fechaReserva){
+        return reservaServicioImp.hacerReserva(diaReserva, fechaReserva);
     }
 }

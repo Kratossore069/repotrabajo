@@ -1,15 +1,18 @@
 package com.bosonit.virtualtravel2.modelo;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Entity;
 
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 
-@Document(collection="reserva")
+@Entity
 public class Reserva {
+    
     @Id
     private int diaReserva;
     private String fechaReserva;
 
+    public Reserva(){}
+    
     public Reserva(int diaReserva, String fechaReserva) {
         this.diaReserva = diaReserva;
         this.fechaReserva = fechaReserva;
@@ -18,16 +21,13 @@ public class Reserva {
     public int getDiaReserva() {
         return diaReserva;
     }
-
     public void setDiaReserva(int diaReserva) {
         this.diaReserva = diaReserva;
     }
-
     public String getFechaReserva() {
         return fechaReserva;
     }
-
     public void setFechaReserva(String fechaReserva) {
         this.fechaReserva = fechaReserva;
-    }
+    }    
 }
