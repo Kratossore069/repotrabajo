@@ -22,7 +22,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
-@RequestMapping("/seguridad")
+@RequestMapping("auth")
 public class SeguridadController {
 
     @Autowired
