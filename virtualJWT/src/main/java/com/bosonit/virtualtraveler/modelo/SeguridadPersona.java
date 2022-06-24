@@ -4,23 +4,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class SeguridadPersona {
-    
-    private int id;
+
     private String username;
     private String password;
-    
-    public SeguridadPersona(int id, String username, String password) {
-        this.id = id;
+
+    public SeguridadPersona(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public SeguridadPersona() {
     }
 
     public String getUsername() {
