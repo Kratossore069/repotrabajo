@@ -13,7 +13,7 @@ import java.util.List;
 public class ReservaServicio {
     
     @Autowired
-    ReservaRepo reservaRepo;
+    private ReservaRepo reservaRepo;
 
     /**
      * FUNCION PARA VER SI TODO FUNCIONA
