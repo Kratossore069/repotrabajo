@@ -9,7 +9,9 @@ import com.bosonit.virtualtraveler.repositorio.ReservaRepo;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+import javax.persistence.Entity;
+
+@Entity
 public class ReservaServicio {
     
     @Autowired
