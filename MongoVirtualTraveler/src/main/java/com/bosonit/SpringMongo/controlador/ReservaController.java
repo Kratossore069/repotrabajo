@@ -40,4 +40,9 @@ public class ReservaController {
     public List<Reserva> getAllReservas() {
         return reservaRepo.getAllReservas();
     }
+
+    @DeleteMapping("/borrartodo")
+    public void eliminarTodo() {
+        reservaRepo.borrarTodo();
+    }
 }

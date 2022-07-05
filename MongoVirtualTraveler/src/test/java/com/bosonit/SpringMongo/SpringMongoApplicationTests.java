@@ -1,7 +1,5 @@
 package com.bosonit.SpringMongo;
 
-import com.bosonit.SpringMongo.modelo.Persona;
-import com.bosonit.SpringMongo.servicio.PersonaServicio;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +9,7 @@ import java.util.List;
 
 @SpringBootTest
 class SpringMongoApplicationTests {
-
+/*
 	@Autowired
 	private PersonaServicio personaServicio;
 
@@ -27,7 +25,7 @@ class SpringMongoApplicationTests {
 		personaServicio.guardarPersona(nuevaPersona);
 		personaServicio.delete(nuevaPersona);
 		Assertions.assertEquals(1,personas.size(),"Debe haberse eliminado la persona");
-	}
+	}*/
 
 
 }

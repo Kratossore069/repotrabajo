@@ -57,4 +57,11 @@ public class ReservaRepo {
         return mongoTemplate.findAll(Reserva.class);
     }
 
+    /**
+     * METODO QUE ELIMINA TODOS LOS REGISTROS
+     */
+    public void borrarTodo(){
+        mongoTemplate.dropCollection(Reserva.class);
+    }
+
 }
