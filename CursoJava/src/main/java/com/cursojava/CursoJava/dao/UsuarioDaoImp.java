@@ -12,15 +12,15 @@ import com.cursojava.CursoJava.modelo.Usuario;
 
 @Repository
 @Transactional
-public class UsuarioDaoImp implements UsuarioDao{
+public class UsuarioDaoImp implements UsuarioDao {
 
     @PersistenceContext
     EntityManager entityManager;
 
     @Override
     public List<Usuario> getUsers() {
-       String sql="from usuarios";
-       return entityManager.createQuery(sql).getResultList();
+        String sql = "from usuarios";
+        return entityManager.createQuery(sql, Usuario.class).getResultList();
     }
-    
+
 }
