@@ -21,7 +21,9 @@ async function iniciarSesion() {
     body: JSON.stringify(datos),
   });
   const respuesta = await rawResponse.text();
-  if (respuesta == "Ok") {
+  if (respuesta != "Fallo") {
+    localStorage.token = respuesta;
+    localStorage.email = datos.email;
     window.location.href = "usuarios.html";
   } else {
     alert("Las credenciales son incorrectas");

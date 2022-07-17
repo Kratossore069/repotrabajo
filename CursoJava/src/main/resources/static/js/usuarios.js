@@ -4,7 +4,12 @@
 $(document).ready(function () {
   cargarUsuarios();
   $("#usuarios").DataTable();
+  actualizarEmailUsuario();
 });
+
+function actualizarEmailUsuario() {
+  document.getElementById("text-email-usuario").outerHTML = localStorage.email;
+}
 
 /**
  * MÉTODO QUE CARGA LOS USUARIOS DE LA BASE
@@ -13,11 +18,7 @@ $(document).ready(function () {
 async function cargarUsuarios() {
   const rawResponse = await fetch("api/usuario", {
     method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    } /*, Esto es para un POST
-      body: JSON.stringify({a: 1, b: 'Textual content'})*/,
+    headers: getHeaders(),
   });
   const usuarios = await rawResponse.json();
 
@@ -41,6 +42,14 @@ async function cargarUsuarios() {
   document.querySelector("#usuarios tbody").outerHTML = listadoHtml;
 }
 
+function getHeaders() {
+  return {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: localStorage.token,
+  };
+}
+
 /**
  * MÉTODO QUE BORRA LOS USUARIOS DE LA
  * TABLA A PARTIR DE SU ID
@@ -53,10 +62,7 @@ async function eliminarUsuario(id) {
 
   const rawResponse = await fetch("api/usuario/" + id, {
     method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    headers: getHeaders(),
   });
 
   location.reload();
