@@ -15,6 +15,9 @@ import com.cursojava.CursoJava.dao.UsuarioDao;
 import com.cursojava.CursoJava.dao.UsuarioDaoImp;
 import com.cursojava.CursoJava.modelo.Usuario;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+
 @RestController
 public class UsarioController {
 
@@ -30,7 +33,6 @@ public class UsarioController {
         newUser.setApellido("Rivera");
         newUser.setEmail("marcos@mail.com");
         return newUser;
-        //return null;
     }
 
     @GetMapping("api/usuario")
@@ -40,6 +42,11 @@ public class UsarioController {
 
     @PostMapping("api/usuario")
     public void registrarUsuario(@RequestBody Usuario usuario) {
+
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        String hash = argon2.hash(1,1024,1,usuario.getPassword());
+        usuario.setPassword(hash);
+
         usuarioDao.registrarUsuario(usuario);
     }
 
