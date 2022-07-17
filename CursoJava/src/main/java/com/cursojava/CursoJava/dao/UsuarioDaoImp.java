@@ -18,9 +18,21 @@ public class UsuarioDaoImp implements UsuarioDao {
     EntityManager entityManager;
 
     @Override
+    @Transactional
     public List<Usuario> getUsers() {
-        String sql = "from usuarios";
-        return entityManager.createQuery(sql, Usuario.class).getResultList();
+        String sql = "FROM Usuario";
+        return entityManager.createQuery(sql , Usuario.class).getResultList();
+    }
+
+    @Override
+    public void eliminar(int id) {
+        Usuario userDelete = entityManager.find(Usuario.class, id);
+        entityManager.remove(userDelete);
+    }
+
+    @Override
+    public void registrarUsuario(Usuario usuario) {
+        entityManager.merge(usuario);
     }
 
 }

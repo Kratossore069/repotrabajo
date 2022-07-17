@@ -2,6 +2,8 @@ package com.cursojava.CursoJava.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,6 +18,7 @@ import lombok.ToString;
 public class Usuario {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter @Column(name="id")
     private int id;
 
@@ -33,4 +36,6 @@ public class Usuario {
 
     @Getter @Setter @Column(name="password")
     private String password;
+
+    
 }
