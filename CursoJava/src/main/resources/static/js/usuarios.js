@@ -7,6 +7,10 @@ $(document).ready(function () {
   actualizarEmailUsuario();
 });
 
+/**
+ * MÉTODO PARA CAMBIAR EL USUARIO
+ * QUE ESTÁ EN LA SESIÓN ACTUAL
+ */
 function actualizarEmailUsuario() {
   document.getElementById("text-email-usuario").outerHTML = localStorage.email;
 }
