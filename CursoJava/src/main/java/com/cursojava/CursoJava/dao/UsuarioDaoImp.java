@@ -14,7 +14,7 @@ import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
 @Repository
-@Transactional
+@Transactional //Se ejecutan de manera de transacción con mysql para evitar sobreescritura
 public class UsuarioDaoImp implements UsuarioDao {
 
     @PersistenceContext
@@ -35,7 +35,7 @@ public class UsuarioDaoImp implements UsuarioDao {
 
     @Override
     public void registrarUsuario(Usuario usuario) {
-        entityManager.merge(usuario);
+        entityManager.persist(usuario);
     }
 
     @Override
