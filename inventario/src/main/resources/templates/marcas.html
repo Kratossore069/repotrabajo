@@ -29,23 +29,31 @@
     </nav>
 
     <div class="container text-center">
-        <div class="p-2">
-            <a th:href="@{/categorias}" class="h2">Lista de categorias</a>
+        <div>
+            <h1>Lista de marcas</h1>
         </div>
-        <div class="p-2">
-            <a th:href="@{/categorias/nuevo}" class="h2">Agregar categoria</a>
-        </div>
-        <div class="p-2">
-            <a th:href="@{/productos}" class="h2">Lista de productos</a>
-        </div>
-        <div class="p-2">
-            <a th:href="@{/productos/nuevo}" class="h2">Agregar producto</a>
-        </div>
-        <div class="p-2">
-            <a th:href="@{/marcas/nueva}" class="h2">Agregar marca</a>
-        </div>
-        <div class="p-2">
-            <a th:href="@{/marcas}" class="h2">Lista de marcas</a>
+        <br>
+        <div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Categorías</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="marca:${listaMarcas}">
+                        <td th:text="${marca.id}"></td>
+                        <td th:text="${marca.nombre}"></td>
+                        <td th:text="${marca.categorias}"></td>
+                        <td>
+                            <a th:href="@{'/marcas/editar'+'/'+${marca.id}}" class="btn btn-info">Editar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
