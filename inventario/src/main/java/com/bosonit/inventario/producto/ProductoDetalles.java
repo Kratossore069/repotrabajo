@@ -37,9 +37,19 @@ public class ProductoDetalles {
         this.producto = producto;
     }
 
+    public ProductoDetalles(int id,String nombre, String valor, Producto producto) {
+        super();
+        this.id=id;
+        this.nombre = nombre;
+        this.valor = valor;
+        this.producto = producto;
+    }
+
     @Override
     public String toString(){
         return nombre+" - "+valor;
     }
+
+   
 
 }

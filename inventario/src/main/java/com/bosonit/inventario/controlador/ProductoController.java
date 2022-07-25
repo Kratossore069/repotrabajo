@@ -37,13 +37,19 @@ public class ProductoController {
 
     @PostMapping("productos/guardar")
     public String guardarProducto(Producto producto, HttpServletRequest request) {
+
         String[] detallesNombres = request.getParameterValues("detallesNombres");
         String[] detallesValores = request.getParameterValues("detallesValores");
-        
-        for(int i=0;i<detallesNombres.length;i++){
+        String[] detallesIDs = request.getParameterValues("detallesIDs");
 
+        for (int i = 0; i < detallesNombres.length; i++) {
+            if (detallesIDs != null && detallesIDs.length > 0) {
+                producto.setDetalle(Integer.valueOf(detallesIDs[i]), detallesNombres[i], detallesValores[i]);
+            }else{
+               producto.aniadirDetalles(detallesNombres[i], detallesValores[i]); 
+            }
         }
-        
+
         productoRepo.save(producto);
         return "redirect:/";
     }

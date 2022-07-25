@@ -97,4 +97,8 @@ public class Producto {
     public void setDetalles(List<ProductoDetalles> detalles) {
         this.detalles = detalles;
     }
+
+    public void setDetalle(int id, String nombre, String valor){
+        this.detalles.add(new ProductoDetalles(id, nombre, valor,this));
+    }
 }
