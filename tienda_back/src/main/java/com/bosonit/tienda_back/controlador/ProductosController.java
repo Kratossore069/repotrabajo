@@ -49,6 +49,15 @@ public class ProductosController {
         return productosServicio.buscarID(id);
     }
 
+    /**
+     * FUNCIÓN UTILIZADA PARA ACTUALIZAR LOS PRODUCTOS
+     * A TRAVÉS DEL FRONT
+     */
+    @GetMapping("/{id}")
+    public Producto obtenerProducto(@PathVariable("id") int id) {
+        return productosServicio.buscarID(id);
+    }
+
     @DeleteMapping("/listar/{id}")
     public void borrarProducto(@PathVariable("id") int id) {
         productosServicio.deleteProducto(id);
