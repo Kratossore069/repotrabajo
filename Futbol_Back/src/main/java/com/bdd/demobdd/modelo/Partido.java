@@ -2,6 +2,7 @@ package com.bdd.demobdd.modelo;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,10 +23,10 @@ public class Partido {
 
     private String titulo;
 
-    @ManyToOne
-    @JoinColumn(name = "partido_liga")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_liga")
     private Liga liga;
 
     @OneToMany(mappedBy = "partido")
-    private Set<Evento> eventos;
+    private Set<Evento> evento;
 }

@@ -2,6 +2,7 @@ package com.bdd.demobdd.modelo;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,9 +24,9 @@ public class Equipo {
     private String titulo;
 
     @OneToMany(mappedBy = "equipo")
-    private Set<Jugador> jugadores;
+    private Set<Jugador> jugador;
 
-    @ManyToOne
-    @JoinColumn(name = "equipo_liga")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_liga")
     private Liga liga;
 }

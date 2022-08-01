@@ -19,9 +19,9 @@ public class Liga {
     private int id;
 
     @OneToMany(mappedBy = "liga")
-    private Set<Equipo> equipos;
+    private Set<Equipo> equipo;
 
     @OneToMany(mappedBy = "liga")
-    private Set<Partido> partidos;
+    private Set<Partido> partido;
     
 }

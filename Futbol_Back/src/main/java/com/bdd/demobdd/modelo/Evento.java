@@ -1,5 +1,6 @@
 package com.bdd.demobdd.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Evento {
 
     private boolean acontecimientos;
 
-    @ManyToOne
-    @JoinColumn(name = "evento_partido")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_partido")
     private Partido partido;
 }
