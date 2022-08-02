@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ import com.bdd.demobdd.modelo.Jugador;
 import com.bdd.demobdd.servicio.EquipoServicio;
 import com.bdd.demobdd.servicio.JugadoresServicio;
 
-@CrossOrigin //Para implementarle luego Angular
+@CrossOrigin // Para implementarle luego Angular
 @RestController
 public class JugadoresController {
 
@@ -51,6 +52,11 @@ public class JugadoresController {
     @DeleteMapping("/borrar_jugador/{id}")
     public void borrarJugador(@PathVariable int id) {
         jugadoresServicio.borrarJugador(id);
+    }
+
+    @PutMapping("/actualizar_jugador/{id}")
+    public Jugador actualizarJugador(@PathVariable int id, @RequestBody Jugador jugador) {
+        return jugadoresServicio.actualizarJugador(id, jugador);
     }
 
     /* Equipo controlador */
