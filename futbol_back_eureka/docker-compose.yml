@@ -15,6 +15,6 @@ services:
       - 3307:3306
     environment:
       MYSQL_DATABASE: futbol
-      MYSQL_USER: futbol
-      MYSQL_PASSWORD: futbol
-      MYSQL_ROOT_PASSWORD: futbol
+      MYSQL_USER: cursojava
+      MYSQL_PASSWORD: cursojava
+      MYSQL_ROOT_PASSWORD: cursojava

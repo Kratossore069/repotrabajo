@@ -1,5 +1,6 @@
-FROM openjdk:18-jdk-alpine
-VOLUME /main-app
-EXPOSE 8080
-ADD ./futbol_back_eureka.jar app.jar
+FROM openjdk:17-jdk-alpine
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+ARG JAR_FILE=./*.jar
+COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
