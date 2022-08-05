@@ -26,4 +26,11 @@ public class Jugador {
     @NotNull
     private Equipo equipo;
 
+    public Jugador(){}
+
+    public Jugador(int id, String nombre, @NotNull Equipo equipo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.equipo = equipo;
+    }
 }

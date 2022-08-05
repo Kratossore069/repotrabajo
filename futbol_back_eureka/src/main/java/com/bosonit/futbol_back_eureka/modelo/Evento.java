@@ -23,4 +23,12 @@ public class Evento {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_partido")
     private Partido partido;
+
+    public Evento(){}
+
+    public Evento(int id, boolean acontecimientos, Partido partido) {
+        this.id = id;
+        this.acontecimientos = acontecimientos;
+        this.partido = partido;
+    }
 }

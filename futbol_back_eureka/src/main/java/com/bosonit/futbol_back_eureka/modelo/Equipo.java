@@ -29,4 +29,13 @@ public class Equipo {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_liga")
     private Liga liga;
+
+    public Equipo(){}
+
+    public Equipo(int id, String titulo, Set<Jugador> jugador, Liga liga) {
+        this.id = id;
+        this.titulo = titulo;
+        this.jugador = jugador;
+        this.liga = liga;
+    }
 }

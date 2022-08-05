@@ -23,5 +23,12 @@ public class Liga {
 
     @OneToMany(mappedBy = "liga")
     private Set<Partido> partido;
-    
+
+    public Liga(){}
+
+    public Liga(int id, Set<Equipo> equipo, Set<Partido> partido) {
+        this.id = id;
+        this.equipo = equipo;
+        this.partido = partido;
+    }
 }
