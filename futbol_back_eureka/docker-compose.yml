@@ -9,7 +9,7 @@ services:
       - mysql_db
     command: sh -c './wait-for mysql_db:3306 -- npm start'
   mysql_db:
-    image: "mysql:8.0"
+    image: "mysql:8.0.28"
     restart: always
     ports:
       - 3307:3306
