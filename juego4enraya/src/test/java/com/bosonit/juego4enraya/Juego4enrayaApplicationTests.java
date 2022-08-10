@@ -1,10 +1,10 @@
-package com.bosonit.demowebflux;
+package com.bosonit.juego4enraya;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemowebfluxApplicationTests {
+class Juego4enrayaApplicationTests {
 
 	@Test
 	void contextLoads() {
