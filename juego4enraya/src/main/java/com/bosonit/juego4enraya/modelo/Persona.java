@@ -1,10 +1,18 @@
 package com.bosonit.juego4enraya.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+
 import org.springframework.data.annotation.Id;
 
+@Entity
+@Table
 public class Persona {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String nombre;
 

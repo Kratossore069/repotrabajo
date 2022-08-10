@@ -9,6 +9,6 @@ import reactor.core.publisher.Flux;
 
 public interface PersonaRepo extends ReactiveCrudRepository<Persona, Integer>{
     
-    @Query("SELECT * FROM persona WHERE nombre = :nombre")
-    Flux<Persona> buscarNombre(String nombre);
+    /*@Query("SELECT * FROM persona WHERE nombre = :nombre")
+    Flux<Persona> buscarNombre(String nombre);*/
 }
