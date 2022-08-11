@@ -16,15 +16,16 @@ public class PersonaController {
     private PersonaService personaService;
 
     /*@GetMapping("/verlista")
-    public Flux<Persona> verPersonas(){
+    public Flux<Persona> verPersonas() {
         return personaService.verPersonas();
+    }
 
     @PostMapping("/guardar")
-    public Mono<Persona> agregarPersona(@RequestBody Persona persona){
-        return personaService.ingresarPersona(persona);
+    public Mono<Persona> agregarPersona(@RequestBody Persona p){
+        return personaService.ingresarPersona(p);
     }*/
 
-    @GetMapping("/index")
+    @GetMapping
     public String verPersonas(Model model) {
         model.addAttribute("users", personaService.verPersonas());
         return "index";
