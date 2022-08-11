@@ -1,10 +1,8 @@
 package com.bosonit.juego4enraya.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +19,12 @@ public class PersonaController {
 
     @Autowired
     private PersonaRepo personaRepo;
+    
+    /*private final PersonaRepo personaRepo;
+
+    public PersonaController(PersonaRepo personaRepo) {
+        this.personaRepo = personaRepo;
+    }*/
 
     @GetMapping
     public Flux<Persona> obtenerPersonas() {
