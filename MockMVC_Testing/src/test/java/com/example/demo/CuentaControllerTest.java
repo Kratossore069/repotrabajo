@@ -115,7 +115,7 @@ public class CuentaControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id",is(3)))
                 .andExpect(jsonPath("$.persona",is("Míriam")))
-                .andExpect(jsonPath("$.saldo",is(new BigDecimal("8000"))));
+                .andExpect(jsonPath("$.saldo",is(8000)));
 
         verify(cuentaServicio).guardarCuentaID(any());
     }
