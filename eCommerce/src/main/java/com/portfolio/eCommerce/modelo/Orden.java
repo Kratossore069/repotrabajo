@@ -21,6 +21,8 @@ public class Orden {
     private Date fechaCreacion;
     private Date fechaRecibida;
 
+    private double total;
+
     @ManyToOne
     private Usuario usuario;
 
