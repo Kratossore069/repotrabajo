@@ -1,12 +1,14 @@
 package com.portfolio.eCommerce.servicio;
 
 import com.portfolio.eCommerce.modelo.Orden;
+import com.portfolio.eCommerce.modelo.Usuario;
 import com.portfolio.eCommerce.repositorio.OrdenRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrdenServicioImp implements OrdenServicio {
@@ -53,5 +55,15 @@ public class OrdenServicioImp implements OrdenServicio {
         }
 
         return numeroConcatenado;
+    }
+
+    @Override
+    public List<Orden> findByUsuario(Usuario usuario) {
+        return ordenRepo.findByUsuario(usuario);
+    }
+
+    @Override
+    public Optional<Orden> findById(Integer id) {
+        return ordenRepo.findById(id);
     }
 }

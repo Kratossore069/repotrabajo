@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,8 +45,11 @@ public class HomeController {
     Orden orden = new Orden();
 
     @GetMapping
-    public String home(Model model) {
+    public String home(Model model, HttpSession session) {
+        log.info("Sesion de usuario " + session.getAttribute("idusuario"));
         model.addAttribute("productos", productoServicio.findAll());
+        // Sesión del usuario
+        model.addAttribute("sesion", session.getAttribute("idusuario"));
         return "usuario/home";
     }
 
@@ -116,17 +120,21 @@ public class HomeController {
     }
 
     @GetMapping("/getCart")
-    public String getCart(Model model) {
+    public String getCart(Model model,HttpSession session) {
 
         model.addAttribute("cart", detalles);
         model.addAttribute("orden", orden);
+
+        // Sesión
+        model.addAttribute("sesion",session.getAttribute("idusuario"));
+
         return "/usuario/carrito";
     }
 
     @GetMapping("/order")
-    public String order(Model model) {
+    public String order(Model model, HttpSession session) {
 
-        Usuario usuario = usuarioServiceImp.findById(1).get();
+        Usuario usuario = usuarioServiceImp.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
 
         model.addAttribute("cart", detalles);
         model.addAttribute("orden", orden);
@@ -144,13 +152,13 @@ public class HomeController {
     }
 
     @GetMapping("/saveOrder")
-    public String saveOrder() {
+    public String saveOrder(HttpSession session) {
 
         Date fechaCreacion = new Date();
         orden.setFechaCreacion(fechaCreacion);
         orden.setNumero(ordenServicio.generarNumeroOrden());
 
-        Usuario usuario = usuarioServiceImp.findById(1).get();
+        Usuario usuario = usuarioServiceImp.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
         orden.setUsuario(usuario);
         ordenServicio.save(orden);
 

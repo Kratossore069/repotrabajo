@@ -4,6 +4,7 @@ import com.portfolio.eCommerce.modelo.Producto;
 import com.portfolio.eCommerce.modelo.Usuario;
 import com.portfolio.eCommerce.servicio.ProductoServicio;
 import com.portfolio.eCommerce.servicio.UploadFileService;
+import com.portfolio.eCommerce.servicio.UsuarioServicio;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -26,6 +28,9 @@ public class ProductoController {
     @Autowired
     private UploadFileService subirArchivo;
 
+    @Autowired
+    private UsuarioServicio usuarioServicio;
+
     @GetMapping
     public String show(Model model) {
         model.addAttribute("productos", productoServicio.findAll());
@@ -38,21 +43,16 @@ public class ProductoController {
     }
 
     @PostMapping("/save")
-    public String save(Producto producto, @RequestParam("img") MultipartFile file) throws IOException {
+    public String save(Producto producto, @RequestParam("img") MultipartFile file, HttpSession session) throws IOException {
+
         LOGGER.info("Este es el objeto producto " + producto);
+        Usuario user = usuarioServicio.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+        producto.setUsuario(user);
+
         if (producto.getId() == null) { //Cuando se crea un producto nuevo
             String nombreImagen = subirArchivo.saveImage(file);
             producto.setImagen(nombreImagen);
-        } /*else {
-            if (file.isEmpty()) { // Editamos el producto pero no cambiamos la imagen
-                Producto productoNuevo = new Producto();
-                productoNuevo = productoServicio.get(producto.getId()).get();
-                producto.setImagen(productoNuevo.getImagen());
-            } else {
-                String nombreImagen = subirArchivo.saveImage(file);
-                producto.setImagen(nombreImagen);
-            }
-        }*/
+        }
         productoServicio.save(producto);
         return "redirect:/productos";
     }
