@@ -7,6 +7,7 @@ import com.portfolio.eCommerce.servicio.UsuarioServicio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,8 @@ public class UsuarioController {
 
     private final Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
+    BCryptPasswordEncoder passEncode = new BCryptPasswordEncoder();
+
     @GetMapping("/registro")
     public String create() {
         return "usuario/registro";
@@ -40,6 +43,7 @@ public class UsuarioController {
     public String save(Usuario usuario) {
         log.info("Usuario registrado " + usuario);
         usuario.setTipo("USER");
+        usuario.setPassword(passEncode.encode(usuario.getPassword()));
         usuarioServicio.save(usuario);
         return "redirect:/";
     }
@@ -49,10 +53,10 @@ public class UsuarioController {
         return "usuario/login";
     }
 
-    @PostMapping("/acceder")
+    @GetMapping("/acceder")
     public String acceder(Usuario usuario, HttpSession session) {
         log.info("Acceso de " + usuario);
-        Optional<Usuario> user = usuarioServicio.findByEmail(usuario.getEmail());
+        Optional<Usuario> user = usuarioServicio.findById(Integer.parseInt(session.getAttribute("idusuario").toString()));
 
         if (user.isPresent()) {
             session.setAttribute("idusuario", user.get().getId());
@@ -82,7 +86,7 @@ public class UsuarioController {
     public String detalleCompra(@PathVariable Integer id, HttpSession session, Model model) {
         log.info("Id de la orden " + id);
         Optional<Orden> orden = ordenServicio.findById(id);
-        model.addAttribute("detalles",orden.get().getDetalle());
+        model.addAttribute("detalles", orden.get().getDetalle());
 
         //Sesión
         model.addAttribute("sesion", session.getAttribute("idusuario"));
@@ -91,7 +95,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/cerrar")
-    public String cerrarSesion(HttpSession session){
+    public String cerrarSesion(HttpSession session) {
         session.removeAttribute("idusuario");
         return "redirect:/";
     }
