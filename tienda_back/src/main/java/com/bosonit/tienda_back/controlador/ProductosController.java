@@ -2,6 +2,7 @@ package com.bosonit.tienda_back.controlador;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,13 +21,11 @@ import com.bosonit.tienda_back.servicios.ProductosServicio;
 
 @CrossOrigin(origins = { "*" })
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/productos")
 public class ProductosController {
 
-    @Autowired
     private ProductosServicio productosServicio;
-
-    @Autowired
     private CategoriasServicio categoriasServicio;
 
     @GetMapping("/listar")

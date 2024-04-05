@@ -2,6 +2,7 @@ package com.bosonit.tienda_back.servicios;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +10,9 @@ import com.bosonit.tienda_back.dao.ProductosDao;
 import com.bosonit.tienda_back.modelo.Producto;
 
 @Service
+@AllArgsConstructor
 public class ProductosServicio {
 
-    @Autowired
     private ProductosDao productosRepo;
 
     /**
