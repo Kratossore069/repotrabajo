@@ -1,27 +1,26 @@
 package com.quizz.QuizzSpring.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.quizz.QuizzSpring.dao.QuestionDao;
+import com.quizz.QuizzSpring.model.Question;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import com.quizz.QuizzSpring.dao.QuestionDao;
-import com.quizz.QuizzSpring.model.Question;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class QuestionService {
-    
-    @Autowired
-    QuestionDao questionDao;
+
+    private QuestionDao questionDao;
 
     public ResponseEntity<List<Question>> getAllQuestions() {
         try {
             return new ResponseEntity<>(questionDao.findAll(), HttpStatus.OK);
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("Error -> "+e.getMessage());
         }
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
     }
@@ -30,7 +29,7 @@ public class QuestionService {
         try {
             return new ResponseEntity<>(questionDao.findByCategory(category),HttpStatus.OK);
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("Error -> "+e.getMessage());
         }
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
 
