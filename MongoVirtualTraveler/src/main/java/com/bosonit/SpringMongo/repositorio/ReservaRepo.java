@@ -12,7 +12,7 @@ import com.bosonit.SpringMongo.modelo.Reserva;
 public class ReservaRepo {
 
     @Autowired
-    MongoTemplate mongoTemplate;
+    private MongoTemplate mongoTemplate;
 
     /**
      * FUNCION QUE HACE UNA RESERVA
